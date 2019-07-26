@@ -1,5 +1,20 @@
 <template>
     <div>
+        <form @submit.prevent="addAnimal()">
+          <div>
+            <label for="vrsta">Vrsta zivotinje : </label>
+            <input id="vrsta" v-model="newAnimal.vrsta" type="text" />
+          </div>
+          <div>
+            <label for="ime">Ime zivotinje : </label>
+            <input id="ime" type="text" v-model="newAnimal.ime" />
+          </div>
+          <div>
+            <label for="datum_rodjenja">Datum rodjenja zivotinje : </label>
+            <input id="datum_rodjenja" v-model="newAnimal.datum_rodjenja" type="text" />
+          </div>
+          <button type="submit">Dodaj zivotinju</button>
+        </form>
       <ul>
         <li v-for="(animal,index) in animals" :key="index">
           Vrsta zivotinje : {{ animal.vrsta }}
@@ -20,6 +35,8 @@
 export default {
   data () {
     return {
+      newAnimal : this.getDefault(),
+
       animals : [
         { vrsta : 'Pas', ime : 'Boni', datum_rodjenja : '2009' },
         { vrsta : 'Ptica', ime : 'Gavro', datum_rodjenja : '2016' },
@@ -37,6 +54,19 @@ export default {
       let animalCopy = this.animals[index]
       this.animals.splice(index,1)
       this.animals.unshift(animalCopy)
+    },
+
+    addAnimal() {
+      this.animals.push({...this.newAnimal})
+      this.newAnimal = this.getDefault()
+    },
+
+    getDefault() {
+      return {
+        vrsta: '',
+        ime: '',
+        datum_rodjenja: '',
+      }
     }
   }
 }
