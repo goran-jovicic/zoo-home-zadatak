@@ -1,19 +1,16 @@
 <template>
     <div>
-      <table>
-        <tr>
-          <th>Vrsta zivotinje</th>
-          <th v-for="(animal,index) in animals" :key="index">{{ animal.vrsta }}</th>
-        </tr>
-        <tr>
-          <td>Ime zivotinje</td>
-          <td v-for="(animal,index) in animals" :key="index">{{ animal.ime }}</td>
-        </tr>
-        <tr>
-          <td>Rodjenje zivotinje</td>
-          <td v-for="(animal,index) in animals" :key="index">{{ animal.datum_rodjenja ? animal.datum_rodjenja : 'nepoznat' }}</td>
-        </tr>
-      </table>
+      <ul>
+        <li v-for="(animal,index) in animals" :key="index">
+          Vrsta zivotinje : {{ animal.vrsta }}
+          <br>
+          Ime zivotinje : {{ animal.ime }}
+          <br>
+          Datum rodjenja zivotinje : {{ animal.datum_rodjenja ? animal.datum_rodjenja : 'Nepoznat' }}
+          <br>
+          <button @click="removeAnimal(index)">Remove Animal</button>
+        </li>
+      </ul>
     </div>
 </template>
 
@@ -26,6 +23,12 @@ export default {
         { vrsta : 'Ptica', ime : 'Gavro', datum_rodjenja : '2016' },
         { vrsta : 'Insekt', ime : 'Komro', datum_rodjenja : '2019' }
       ]
+    }
+  },
+
+  methods : {
+    removeAnimal(index) {
+      this.animals.splice(index,1)
     }
   }
 }
@@ -41,6 +44,10 @@ export default {
     border-width: 0.1rem;
     margin: 0.5rem;
     padding: 0.5rem;
+  }
+  li {
+    list-style: none;
+    margin:1rem;
   }
 </style>
 
