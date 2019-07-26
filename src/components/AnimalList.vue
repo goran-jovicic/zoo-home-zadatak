@@ -9,6 +9,8 @@
           Datum rodjenja zivotinje : {{ animal.datum_rodjenja ? animal.datum_rodjenja : 'Nepoznat' }}
           <br>
           <button @click="removeAnimal(index)">Remove Animal</button>
+          <br>
+          <button @click="moveToTop(index)">Move to top</button>
         </li>
       </ul>
     </div>
@@ -29,6 +31,12 @@ export default {
   methods : {
     removeAnimal(index) {
       this.animals.splice(index,1)
+    },
+
+    moveToTop(index) {
+      let animalCopy = this.animals[index]
+      this.animals.splice(index,1)
+      this.animals.unshift(animalCopy)
     }
   }
 }
@@ -50,11 +58,5 @@ export default {
     margin:1rem;
   }
 </style>
-
-
-// U komponentu postaviti niz objekata koji predstavlja niz od 5 proizvoljnih životinja. 
-// Svaka životinja treba da ima:
-// 	- vrstu
-// 	- ime
-// 	- datum rođenja
-// `AnimalList` treba da prikaže sve životinje dodate u listu. Prikazati sva tri polja u tabeli.
+// Za svaku životinju u tabeli dodati button `Move to top` koja treba da poziva funkciju koja će prebacivati datu životinju na početak niza.
+// Commit-ovati urađeno
