@@ -13,6 +13,13 @@
             <label for="datum_rodjenja">Datum rodjenja zivotinje : </label>
             <input id="datum_rodjenja" v-model="newAnimal.datum_rodjenja" type="text" />
           </div>
+          <div>
+            <select v-model="newAnimal.sector">
+              <option v-for="(sector,index) in sectors" :key="index">
+                {{ sector }}
+              </option>
+            </select>
+          </div>
           <button type="submit">Dodaj zivotinju</button>
         </form>
       <ul>
@@ -22,6 +29,8 @@
           Ime zivotinje : {{ animal.ime }}
           <br>
           Datum rodjenja zivotinje : {{ animal.datum_rodjenja ? animal.datum_rodjenja : 'Nepoznat' }}
+          <br>
+          Sektor zivotinje : {{ animal.sectors }}
           <br>
           <button @click="removeAnimal(index)">Remove Animal</button>
           <br>
@@ -38,9 +47,13 @@ export default {
       newAnimal : this.getDefault(),
 
       animals : [
-        { vrsta : 'Pas', ime : 'Boni', datum_rodjenja : '2009' },
-        { vrsta : 'Ptica', ime : 'Gavro', datum_rodjenja : '2016' },
-        { vrsta : 'Insekt', ime : 'Komro', datum_rodjenja : '2019' }
+        { vrsta : 'Bigl', ime : 'Boni', datum_rodjenja : '2009' , sectors: 'Pas' },
+        { vrsta : 'Vrana', ime : 'Gavro', datum_rodjenja : '2016', sectors: 'Ptica' },
+        { vrsta : 'Bubasvaba', ime : 'Komro', datum_rodjenja : '2019', sectors: 'Insekt' }
+      ],
+
+      sectors : [
+        'Pas', 'Ptica', 'Insekt'
       ]
     }
   },
@@ -66,6 +79,7 @@ export default {
         vrsta: '',
         ime: '',
         datum_rodjenja: '',
+        sectors : ''
       }
     }
   }
