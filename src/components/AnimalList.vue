@@ -37,6 +37,12 @@
           <button @click="moveToTop(index)">Move to top</button>
         </li>
       </ul>
+      <ul>
+        <li v-for="(sector,index) in sectors" :key="index">
+          {{ sector }}
+        <button @click="showAnimalsSector(sector)">Vidi listu zivotinja</button>
+        </li>
+      </ul>
     </div>
 </template>
 
@@ -81,6 +87,12 @@ export default {
         datum_rodjenja: '',
         sectors : ''
       }
+    },
+
+    showAnimalsSector(sector) {
+      let sectorAnimals = this.animals.filter(animal => animal.sectors === sector).map(animal=>animal.ime)
+
+      window.alert(sectorAnimals.join(', '))
     }
   }
 }
@@ -102,5 +114,5 @@ export default {
     margin:1rem;
   }
 </style>
-// Za svaku životinju u tabeli dodati button `Move to top` koja treba da poziva funkciju koja će prebacivati datu životinju na početak niza.
-// Commit-ovati urađeno
+ispod tabele životinja dodati tabelu sektora. Prikazati ime svakog sektora i button `Vidi listu životinja`.
+Klik na button `Vidi listu životinja` treba da u alert prozoru prikaže listu životinja u tom sektoru
