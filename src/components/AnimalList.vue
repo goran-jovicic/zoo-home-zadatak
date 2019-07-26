@@ -11,7 +11,7 @@
         </tr>
         <tr>
           <td>Rodjenje zivotinje</td>
-          <td v-for="(animal,index) in animals" :key="index">{{ animal.datum_rodjenja }}</td>
+          <td v-for="(animal,index) in animals" :key="index">{{ animal.datum_rodjenja ? animal.datum_rodjenja : 'nepoznat' }}</td>
         </tr>
       </table>
     </div>
